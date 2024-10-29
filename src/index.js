@@ -1,6 +1,6 @@
 import React from "react";
-import * as Icon from "./icons";
 import { Text } from "react-native";
+import * as Icon from "./icons";
 
 const RemixIcon = ({
   name = "remixicon-fill",
@@ -10,10 +10,6 @@ const RemixIcon = ({
 }) => {
   name = name.startsWith("ri-") ? name.substring(3) : name;
 
-  const iconComponentName = name
-    .split("-")
-    .map(s => s[0].toUpperCase() + s.substr(1))
-    .join("");
   const Component = Icon[iconComponentName];
 
   return Component ? (
