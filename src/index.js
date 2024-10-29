@@ -10,7 +10,11 @@ const RemixIcon = ({
 }) => {
   name = name.startsWith("ri-") ? name.substring(3) : name;
 
-  const Component = Icon[name];
+  const iconComponentName = name
+    .split("-")
+    .map(s => s[0].toUpperCase() + s.substr(1))
+    .join("");
+  const Component = Icon[iconComponentName];
 
   return Component ? (
     <Component {...props} fill={color || "black"} width={size} height={size} />
