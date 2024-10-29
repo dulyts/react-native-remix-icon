@@ -21,6 +21,7 @@ unzip RemixIcon_Svg_v$version.zip -d tmp
 find tmp/ -type f -name '*.svg' -exec cp '{}' icons/ ';'
 rm -rf src/icons/*
 npx  --yes @svgr/cli --filename-case kebab --native -d src/icons icons
+npm version $version --allow-same-version --no-git-tag-version
 rm -rf tmp icons/*
 rm RemixIcon_Svg_v$version.zip
 
