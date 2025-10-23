@@ -2,7 +2,7 @@
   "name": "react-native-remix-icons",
   "description": "Remix Icon for React Native",
   "author": "Ajay Sivan",
-  "version": "4.5.2",
+  "version": "4.7.0",
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "homepage": "https://github.com/dulyts/react-native-remix-icon",
