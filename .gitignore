@@ -57,3 +57,6 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+/icons/
+/tmp/
+RemixIcon_Svg_v*.zip

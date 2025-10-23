@@ -11,17 +11,29 @@ set -o pipefail
 # Print command traces before executing command.
 set -o xtrace
 
-version=4.5.0
+OWNER=Remix-Design
+REPO=RemixIcon
+SVG_PREFIX=RemixIcon_Svg_
 
-url=https://github.com/Remix-Design/RemixIcon/releases/download/v$version/RemixIcon_Svg_v$version.zip
+version=$(curl -s "https://api.github.com/repos/$OWNER/$REPO/releases" \
+  | jq -r '.[].tag_name' \
+  | grep -E '^v?[0-9]+\.[0-9]+\.[0-9]+$' \
+  | sort -V \
+  | tail -n 1)
+
+echo "Latest version: $version"
+
+url=https://github.com/$OWNER/$REPO/releases/download/$version/$SVG_PREFIX$version.zip
 
 
 wget $url
-unzip RemixIcon_Svg_v$version.zip -d tmp
+unzip $SVG_PREFIX$version.zip -d tmp
+rm -rf icons
+mkdir icons
 find tmp/ -type f -name '*.svg' -exec cp '{}' icons/ ';'
 rm -rf src/icons/*
 npx  --yes @svgr/cli --filename-case kebab --native -d src/icons icons
 npm version $version --allow-same-version --no-git-tag-version
 rm -rf tmp icons/*
-rm RemixIcon_Svg_v$version.zip
+rm $SVG_PREFIX$version.zip
 
